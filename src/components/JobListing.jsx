@@ -4,10 +4,18 @@ import { useState } from 'react';
 
 export const JobListing = ({ job }) => {
 
+    const [showMore, setShowMore] = useState(false);
+
 
     let description = job.description;
 
- 
+    let displayDescription = description.substring(0, 90) + '....'
+
+    const changeState = (prevState) => !prevState;
+
+
+    console.log(displayDescription);
+
 
     return (
         <div className="bg-white rounded-xl shadow-md relative">
@@ -18,11 +26,25 @@ export const JobListing = ({ job }) => {
                 </div>
 
                 <div className="mb-5">
-                    {description}
+                    {displayDescription}
                 </div>
+
+                <button
+                    onClick={() => {
+                        // anon function inside onClick to make sure there is only a reference
+                        // also another anon function insde setShowMore function
+                        // setShowMore((prevState) => !prevState)
+                        setShowMore(changeState);
+                    }}
+                    className='text-indigo-500 hover:text-indigo-800 mb-5'>
+                    {showMore ? 'Less' : 'More'}
+                </button>
+
 
 
                 <h3 className="text-indigo-500 mb-2">{job.salary} / Year</h3>
+
+
 
                 <div className="border border-gray-100 mb-5"></div>
 
