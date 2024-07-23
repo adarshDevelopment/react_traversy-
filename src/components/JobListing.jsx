@@ -26,7 +26,7 @@ export const JobListing = ({ job }) => {
                 </div>
 
                 <div className="mb-5">
-                    {displayDescription}
+                    {showMore ? description : displayDescription}
                 </div>
 
                 <button
